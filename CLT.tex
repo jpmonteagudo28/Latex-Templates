@@ -1,0 +1,212 @@
+%%% ------------------------------------------------------------------------
+%%% Requirements that are included in a modern tex distribution:
+%%% ------------------------------------------------------------------------
+%%% xelatex
+%%% fontspec.sty
+%%% hyperrref.sty
+%%% xunicode.sty
+%%% color.sty
+%%% url.sty
+%%% fancyhdr.sty
+%%% memoir.cls
+%%% fontawesome.sty
+%%% --------------------------------------------------------------------------
+\documentclass[11.5pt,article,oneside]{article}   
+\usepackage{org-preamble-xelatex} 
+\usepackage{fontawesome,url}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb}
+\usepackage{indentfirst}
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage{biblatex}
+%%%---------------------------------------------------------------------------
+%% Change as needed. Or just add me as a coauthor. Only some of these are 
+%% used below in the hyperref declaration and address banner section.
+\def\myauthor{JP Monteagudo}
+\def\mytitle{Appendix}
+\def\mycopyright{\myauthor}
+\def\mykeywords{}
+\def\mybibliostyle{plain}
+\def\mybibliocommand{}
+\def\mysubtitle{}
+\def\myaffiliation{Liberty University}
+\def\myaddress{Health Sciences Department}
+\def\myemail{jpmonteagudo@liberty.edu}
+\def\myweb{http://www.jpmonteagudo.com}
+\def\myphone{(434) 582-7693}
+\def\mytwitter{@jpPabl0}
+\def\mygithub{@jpmonteagudo28}
+\def\myversion{}
+\def\myrevision{}
+
+
+\def\myaffiliation{Liberty University}
+\def\myauthor{JP Monteagudo}
+\date{} % not used (revision control instead)
+\def\mykeywords{JP, Monteagudo, JP Monteagudo, CLT, Lévy, Statistics}
+\definecolor{light}{rgb}{0.5, 0.5, 0.5}
+\def\light#1{{\color{light}#1}}% Include the setspace package
+%% Bibtex commands
+\nocite{*}
+\addbibresource{clt_refs.bib}
+%%% --------------------------------------------------------------------------
+
+\begin{document}
+\setromanfont[
+Mapping={tex-text}, 
+Numbers={OldStyle},
+Ligatures={Common},
+BoldFont=ETbb-Bold.otf,
+ItalicFont=ETbb-Italic.otf,
+BoldItalicFont=ETbb-BoldItalic.otf
+]{ETbb-Regular.otf}
+	
+\setmonofont[Mapping=tex-text,Scale=0.72]{FiraMono-Bold.ttf} 
+
+\newfontface\scheader[SmallCapsFont={ETbb-Bold.otf},SmallCapsFeatures={Letters=SmallCaps}]{ETbb-Bold.otf}
+
+\newfontface\addressblock[Mapping={tex-text}, 
+	Numbers={OldStyle},
+	Ligatures={Common}]{FiraMono-Regular.ttf}
+ %% Marginal header
+%% Note: as the document goes on you may need to introduce a (gradually increasing)
+%% \vspace element to keep the marginal header pleasingly aligned with the first 
+%% item in the body text. Like this: \marginhead{{\vskip 0.4em}Grants}, or 
+%% \marginhead{{\vskip 0.8em}Service}. Experiment as needed.
+\newcommand{\marginhead}[1]{\marginpar{\textsf{{\footnotesize\vspace{-1em}\flushright #1}}}}
+
+
+%% [optional] custom ampersand (font consistent with the one chosen above)
+% \newcommand{\amper}{{\fontspec[Scale=.95,Colour=AA0000]{Minion Pro Medium}\selectfont\&\,}}
+
+%%%------------------------------------------------------------------------
+%%% Page layout
+%%%------------------------------------------------------------------------
+
+% These lines will insert git revision info in the footer, using the vc
+% package---see docs for vc package for details. Comment out this line
+% if you're not using vc, and also remove the \input{vc} line above.
+\pagestyle{myheadings}
+%\thispagestyle{kjhgit}
+
+
+%%%------------------------------------------------------------------------
+%%% Address and contact block
+%%%------------------------------------------------------------------------
+\begin{minipage}[t]{2.65in}
+ \flushright {\footnotesize 
+ \href{https://www.liberty.edu/residential/health-sciences/}{Department of Health Sciences}, \\ 1971 University Blvd,\\ Liberty University, \\ \vspace{-0.05in} Lynchburg, \textsc{VA} 24515}  
+  
+\end{minipage}
+\hfill     
+%\begin{minipage}[t]{0.0in}
+% dummy (needed here)
+%\end{minipage}
+\hfill
+\begin{minipage}[t]{1.5in}
+\flushright \footnotesize
+  {\scriptsize \texttt{\href{http://twitter.com/jpPabl0}{\mytwitter}} \, \faTwitter }  \\ 
+  {\scriptsize \texttt{\href{mailto:\myemail}{\myemail}} \, \faEnvelope} \\
+  {\scriptsize \texttt{\href{http:github.com/jpmonteagudo28}{\mygithub}} \, \faGithub} \\
+  {\scriptsize \texttt{\href{\myweb}{\myweb}} \, \faGlobe}
+\end{minipage}
+
+\bigskip 
+
+\section*{The Lindeberg– Lévy's 1922 “Classic” Central Limit \newline Theorem}
+
+\setlength{\parindent}{10 pt}
+Here I provide a more technical summary of Paul Lévy's special case of the classic central limit theorem as discussed in his 1924 article, “Théorie des erreurs. La loi de Gauss et les lois exceptionnelles” and also mentioned by Hans Fischer (2011) in \textit{A History of the Central Limit Theorem}.
+
+\bigskip
+
+\small For a sequence of distribution functions $(F_{k})$, $k \in \mathbb{R}$ of independent random variables $X_{k}$, each with zero expectation  and variance 1, let 
+
+\[\forall{\epsilon} > {0}\exists{a} > {0}\exists{k} \in {\mathbb{N}: \int_{|\xi| \leq {a}}} \xi^{2}{dF_k(\xi) \geq 1 - \epsilon}
+\]
+
+Let $(m_{k})_{k \in \mathbb{N}}$ be a sequence of positive numbers with
+\medskip
+
+\[\frac{\max_{k=1}^{n} m_{k}^{2}}{\sum_{k=1}^{n} m_{k}^{2}} \rightarrow {0},  
+({n} \rightarrow \infty).
+\]
+
+Then 
+
+\[\lim_{{n \to \infty}} P\left(\frac{\sum_{k=1}^{n} (m_k X_k)}{\sqrt{\sum_{k=1}^{n} m_k^{2}}} \leq x\right) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x}  e^{-\frac{t^2}{2}} \, dt
+\]
+
+\medskip
+
+\normalsize The first statement shows that for all positive $\epsilon$– errors–  there exists an ${a}$ and a positive integer ${k}$ that's greater than zero such that the integral of $\xi^{2}$– the second moment or variance of $X_{k}$– with respect to its distribution function over a specific range $|\xi| \leq {a}$ will be greater than or equal to $1 -\epsilon$. In other words, for any small level of error, we can find a specific range (determined by ${a}$) and a specific distribution from a sequence (determined by ${k}$) such that most of the “density” of that distribution falls within that range. This integration then controls the behavior of the tails of the distribution. \vspace{.3em}
+\newpage
+
+Next, we have a sequence of positive integers $m_{k}$ used as scaling factors or weights for the random variables $X_{k}$. The only admissible $m_{k}$ weights are those for which, as the number of terms ($n$) increases, the ratio of the maximum squared scaling factor to the sum of squared scaling factors tends to zero. As you consider an increasingly large number of terms in the sum of scaled independent random variables, no single scaling factor dominates the contribution to the sum. The impact of the largest squared scaling factor becomes negligible compared to the cumulative effect of all squared scaling factors. \vspace{.3em}
+
+Then, as ${n}$– the sample size– increases towards infinity, the distribution of the standardized sum {\small {$\frac{\sum_{k=1}^{n} (m_k X_k)}{\sqrt{\sum_{k=1}^{n} m_k^{2}}}$}}, formed by the weighted sum of the independent random variables $X_{k}$, converges to standard normal distribution. This means the probability of this standardized sum being less than a specific value ${x}$ corresponds to the area less than or equal to ${x}$ under the standard normal curve.
+
+At the time Lévy presented his formulation of the CLT, Lindeberg submitted a note to the Paris Academy in which he proposed a more general condition than \href{https://en.wikipedia.org/wiki/Aleksandr_Lyapunov}{Aleksandr Lyapunov's}. Under Lindeberg's condition, we have a random variable $X_{k}$ with $\mu = 0$ and $\sigma^{2}= 1$ and Levy's formulation can be obtained by substituting 
+\small \[\forall{\epsilon} > {0}\exists{a} > {0}\exists{k} \in {\mathbb{N}: \int_{|\xi| \leq {a}}} \xi^{2}{dF_k(\xi) \geq 1 - \epsilon}
+\]
+by
+
+\[\forall \epsilon > 0\exists a > 0\exists k \in \mathbb{N}: \frac{1}{\sigma_k^2} \int_{|\xi| \leq a\sigma_{k}} \xi^{2} \, dF_k(\xi) \geq 1 - \epsilon.\] \vspace{.3em}
+
+\noindent Making $\sigma_{k_2} = m_{k_2}$ and  $r_{n^2} = \sum_{k=1}^{n}{\sigma_k^2}$, we get \vspace{.3em}
+\[\forall t > 0\forall \eta > 0\exists n_0\forall n \geq n_0: \frac{1}{r_n^2} \int_{|x| \leq r_{n^t}} x^{2} \, dF_k(x) \geq 1 - \eta.\]
+
+\medskip
+
+\subsection*{\color{NavyBlue}Arriving at the Classic Central Limit Theorem} 
+\normalsize After dealing with characteristic and moment–generating functions, we arrive at the “classic” CLT 
+\small \[\sqrt{n}({\bar{X_k} - E[X_k]}) \stackrel{d}{\rightarrow} \mathcal{N}(0,\sigma^{2})
+\]
+for every real number $z$,
+\[\lim_{{n \to \infty}} P\left(\frac{\sqrt{n} ({\bar{X_k} - E[X_k]})}{\sigma} \leq \frac{z}{\sigma}\right) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{z}{\sigma}}  e^{-\frac{t^2}{2}} \, dt.\]
+
+\normalsize For any sequence of independent, identically distributed (i.i.d) random variables with mean equal zero and finite variance, as $n$ approaches infinity, the random variables $\sqrt{n}({\bar{X_k} - E[X_k])}$ converge to a normal distribution. 
+\newpage
+
+\section*{Relaxed assumptions in the Central Limit Theorem} \vspace{.5em}
+\setlength{\parindent}{10 pt}
+The classic central limit theorem states that given (i.i.d) random variables $X_{i}$ with expectation $\mu$ and variance $\sigma^{2} < \infty$; the distribution of $X_{i}$ will converge to a standard normal distribution; \textbf{however}, we can weaken these conditions to create variations of the CLT.
+
+\subsection*{\color{NavyBlue}Non-identically distributed random variables}
+
+Let $X_n$ be any sequence of independent random variables with $\mu = 0$ and $\sigma^{2} < \infty$, with variance
+\[S_{n}^{2} = \sum_{i}^{n} \sigma_{n}^{2}
+\]
+\subsubsection*{\color{RoyalBlue}Lyapunov's CLT}
+If for some $\delta > 0$, Lyapunov's condition \marginnote{\light{\small The larger the $\delta$, the faster the tails of the distribution must decay.}}[-1cm]
+
+\small \[ \lim_{{n \to \infty}} \frac{1}{S_{n}^{2 + \delta}} \sum_{i = 1}^{n} E[|X_{n} - \mu_{i}|^{2 + \delta}] = 0
+\] \vspace{.4em}
+\small is satisfied, then a sum of $\frac{X_{n} - \mu_{n}}{s_{n}}$ converges to a standard normal random variable as $n$ goes to infinity. 
+\small \[\frac{1}{S_{n}} \sum_{i = 1}^{n}(X_{n} - \mu_{n}) \stackrel{d} \to \mathcal{N}(0,1)
+\]
+\subsubsection*{\color{RoyalBlue}Lindeberg's CLT}
+\normalsize Lindeberg's condition also requires that $X_{n}$ be independent, random variable with finite variance and that for some $\epsilon > 0$,
+\small\[\lim_{n \to \infty} \frac{1}{S_{n}^2} \sum_{i = 1}^{n} E[(X_{n} - \mu_{n})^{2} \cdot 1_{{\left\{|X_{n}-\mu_{n}| >\epsilon_{S_{n}}\right\}}}] = 0.\] \marginnote{\light{$1_{\left\{\cdots\right\}}$ represents an \href{https://en.wikipedia.org/wiki/Indicator_function}{indicator function}}}[-1cm]
+
+If the previous condition is satisfied, then
+\small \[\frac{1}{S_{n}} \sum_{i}^{n}(X_{n} - \mu_{n}) \stackrel{d} \to \mathcal{N}(0,1)
+\]
+\newpage
+
+\subsection*{\color{NavyBlue}Infinite Variance– The Generalized CLT}
+
+\normalsize Under the Generalized CLT (GCLT), we require that $X_{n}$ be i.i.d but don't impose a constraint of finite variance. \marginnote{\light{\small A distribution is said to have \href{https://stats.stackexchange.com/questions/94402/what-is-the-difference-between-finite-and-infinite-variance}{infinite variance} when the upper bound of its expectation is unknown}}[-.30cm]
+
+\small For random variables $X_{n}$ with infinite variance, we would need sequences of constants $a_{n} > 0$ and $b_{n} > 0$ such that 
+
+\[\frac{\sum_{i = 1}^{n}(X_{n}) - b_{n}}{a_{n}} \stackrel{d} \to Z,
+\] \vspace{.3em}
+with $Z$ being a non-degenerate random variable for some $0 < \alpha \leq 2$. Therefore, if the sums of the i.i.d random variables converge in distribution to $Z$, then $Z$ must be a \href{https://en.wikipedia.org/wiki/Stable_distribution}{stable distribution}. When $a = 2, X_{n}$ converges to a normally distributed random variable.
+\bigskip
+\printbibliography
+\end{document}
